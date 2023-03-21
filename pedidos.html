@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pedido de Productos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!--<link rel="stylesheet" href="build/css/style.css" />-->
+    <link rel="stylesheet" href="build/css/mini.css" />
+  </head>
+  <body>
+    <!--navbar-->
+    <div class="container-fluid d-flex gap-4 align-items-center bg-dark py-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="36"
+        height="36"
+        fill="white"
+        class="bi bi-bag-heart-fill ms-4"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"
+        />
+      </svg>
+      <p class="m-0 fs-1 text-white">Supermercado TDS</p>
+    </div>
+
+    <main class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="display-3 text-center mb-5">Pedido de Productos</h1>
+        </div>
+      </div>
+
+      <form class="needs-validation" novalidate>
+        <div class="row mb-4 align-items-center">
+          <label for="inputIdProducto" class="col-sm-2 col-form-label"
+            >Código</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="inputIdProducto"
+            />
+          </div>
+        </div>
+        <div class="row mb-4 align-items-center">
+          <label for="inputNombreProducto" class="col-sm-2 col-form-label"
+            >Nombre</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="inputNombreProducto"
+            />
+          </div>
+        </div>
+        <div class="row mb-4 align-items-center">
+          <label for="inputCategoriaProducto" class="col-sm-2 col-form-label"
+            >Proveedor</label
+          >
+          <div class="col-sm-10">
+            <select class="form-select" required>
+              <option value="1">Terminal</option>
+              <option value="2">La Barata</option>
+              <option value="3">Los Chinos</option>
+              <option value="4">Nestlé S.A</option>
+              <option value="5">Cervecería S.A</option>
+              <option value="6">Brehem</option>
+              <option value="7">Yoplait</option>
+              <option value="8">Capistrano</option>
+            </select>
+            <div class="valid-feedback">Excelente!</div>
+            <div class="invalid-feedback">Selecciona un proveedor</div>
+          </div>
+        </div>
+        <div class="row mb-4 align-items-center">
+          <label for="inputExistenciaProducto" class="col-sm-2 col-form-label"
+            >Cantidad</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="number"
+              class="form-control"
+              id="inputExistenciaProducto"
+              min="0"
+              step="1"
+              required
+            />
+            <div class="valid-feedback">Excelente!</div>
+            <div class="invalid-feedback">
+              Ingresa la cantidad deseada del producto. El número debe ser un
+              entero mayor a 0.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-secondary mt-5 fw-bold">
+          Confirmar Pedido
+        </button>
+      </form>
+    </main>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/pedidos.js"></script>
+  </body>
+</html>

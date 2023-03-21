@@ -1,0 +1,21 @@
+{
+  "name": "inventario_supermercado",
+  "version": "1.0.0",
+  "description": "Proyecto de Programación Avanzada - Inventario de Supermercado",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "electron .",
+    "compilar:sass": "sass --watch src/scss:build/css",
+    "build:sass": "purgecss --css build/css/style.css --content *.html --output build/css/mini.css"
+  },
+  "author": "José Quinonez",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.1.4",
+    "sass": "^1.59.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0-alpha1",
+    "bootstrap-icons": "^1.10.3"
+  }
+}
