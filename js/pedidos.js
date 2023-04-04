@@ -1,14 +1,3 @@
-let idProducto = document.getElementById("inputIdProducto");
-let nombreProducto = document.getElementById("inputNombreProducto");
-let existenciaProducto = document.getElementById("inputExistenciaProducto");
-
-window.comunicacion3.peticion("peticion", function (event, args) {
-  console.log(args);
-  idProducto.value = args.idProducto;
-  nombreProducto.value = args.nombre;
-  existenciaProducto.value = args.existencia;
-});
-
 (() => {
   "use strict";
 
@@ -31,3 +20,66 @@ window.comunicacion3.peticion("peticion", function (event, args) {
     );
   });
 })();
+
+let idProducto = document.getElementById("inputIdProducto");
+let nombreProducto = document.getElementById("inputNombreProducto");
+let nombreProveedor = document.getElementById("inputProveedor");
+let existenciaProducto = document.getElementById("inputExistenciaProducto");
+
+let fechaPedido;
+let idProveedor;
+
+window.comunicacion.peticion("peticion", function (event, args) {
+  idProducto.value = args;
+  window.comunicacion.queryPedidoProducto([idProducto.value]);
+});
+
+window.comunicacion.resultProducto(
+  "result-Pedido-Producto",
+  function (event, args) {
+    nombreProducto.value = args[0];
+    existenciaProducto.value = args[1];
+  }
+);
+
+document.addEventListener("DOMContentLoaded", function () {
+  var formulario = document.getElementById("form-login");
+
+  formulario.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+    fechaPedido = obtenerFecha();
+    idProveedor = nombreProveedor.value;
+    window.comunicacion.queryPedidoIgual([idProducto.value, idProveedor]);
+  });
+});
+
+window.comunicacion.pedidoInvalido(function (event, args) {
+  alert(args);
+});
+
+window.comunicacion.pedido_ok("pedido-ok", function (event, args) {
+  window.comunicacion.queryPedidoIgualProducto([idProducto.value]);
+});
+
+window.comunicacion.pedidoAlerta(function (event, args) {
+  alert(args);
+});
+
+window.comunicacion.pedido_ok("pedido-ok", function (event, args) {
+  window.comunicacion.generacionPedido([
+    idProducto.value,
+    idProveedor,
+    existenciaProducto.value,
+    fechaPedido,
+  ]);
+});
+
+function obtenerFecha() {
+  let fechaActual = new Date();
+  let dia = fechaActual.getDate();
+  let mes = fechaActual.getMonth() + 1;
+  let anio = fechaActual.getFullYear();
+  let separador = "-";
+  let fechaBD = dia + separador + mes + separador + anio;
+  return fechaBD;
+}

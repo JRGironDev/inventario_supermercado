@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .trim()
       .toLowerCase();
 
-    console.log(formularioUsuario);
     comprobarFormularioUsuario();
   }
 
@@ -68,6 +67,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   formulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
-    window.comunicacion.inicioUsuario(usuarioInput.value);
+    window.comunicacion.inicioUsuario([
+      usuarioInput.value,
+      passwordInput.value,
+    ]);
+  });
+
+  window.comunicacion.usuarioInvalido(function (event, args) {
+    alert(args);
+  });
+
+  window.comunicacion.contraseñaInvalida(function (event, args) {
+    alert(args);
   });
 });

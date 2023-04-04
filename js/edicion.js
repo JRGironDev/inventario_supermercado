@@ -1,18 +1,3 @@
-let idProducto = document.getElementById("inputIdProducto");
-let nombreProducto = document.getElementById("inputNombreProducto");
-let categoriaProducto = document.getElementById("inputCategoriaProducto");
-let existenciaProducto = document.getElementById("inputExistenciaProducto");
-let descripcionProducto = document.getElementById("inputDescripcionProducto");
-
-window.comunicacion2.edicion("edicion", function (event, args) {
-  console.log(args);
-  idProducto.value = args.idProducto;
-  nombreProducto.value = args.nombre;
-  categoriaProducto.value = args.categoria;
-  existenciaProducto.value = args.existencia;
-  descripcionProducto.value = args.descripcion;
-});
-
 (() => {
   "use strict";
 
@@ -35,3 +20,43 @@ window.comunicacion2.edicion("edicion", function (event, args) {
     );
   });
 })();
+
+let idProducto = document.getElementById("inputIdProducto");
+let nombreProducto = document.getElementById("inputNombreProducto");
+let categoriaProducto = document.getElementById("inputCategoriaProducto");
+let existenciaProducto = document.getElementById("inputExistenciaProducto");
+let descripcionProducto = document.getElementById("inputDescripcionProducto");
+let btnEliminarCambios = document.getElementById("eliminarCambios");
+
+window.comunicacion.edicion("edicion", function (event, args) {
+  idProducto.value = args;
+  window.comunicacion.queryProducto([idProducto.value]);
+});
+
+window.comunicacion.resultProducto("result-Producto", function (event, args) {
+  nombreProducto.value = args[0];
+  descripcionProducto.value = args[1];
+  categoriaProducto.value = args[2];
+  existenciaProducto.value = args[3];
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var formulario = document.getElementById("form-login");
+  let btnEliminarCambios = document.getElementById("eliminarCambios");
+
+  formulario.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+    window.comunicacion.actualizacionProducto([
+      nombreProducto.value,
+      descripcionProducto.value,
+      categoriaProducto.value,
+      existenciaProducto.value,
+      idProducto.value,
+    ]);
+  });
+
+  btnEliminarCambios.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.comunicacion.reload();
+  });
+});
